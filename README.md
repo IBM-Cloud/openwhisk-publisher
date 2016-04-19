@@ -12,7 +12,7 @@ This example is about simplifying even further this process. Once configured, th
 thing you have to worry about is to work on your content and commit the files to GitHub.
 From there, OpenWhisk takes charge of generating the new website and deploying it.
 
-  Note: This examle does not aim to be a *one-size fits all solution* but serves the purpose
+  Note: This example does not aim to be a *one-size fits all solution* but serves the purpose
   of highlighting the concepts behind a static website generation workflow.
   The [generation action](jekyll-generator/client/generate.sh) assumes a simple Jekyll website with no plugin.
   It could be easily updated to handle more complex generation cases.
