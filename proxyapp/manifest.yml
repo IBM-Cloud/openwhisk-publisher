@@ -1,0 +1,5 @@
+applications:
+- name: openwhisk-publisher-proxy
+  host: openwhisk-publisher-proxy
+  buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
+  memory: 64M
