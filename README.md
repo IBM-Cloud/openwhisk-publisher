@@ -190,7 +190,8 @@ When publishing the generated website, the action made the Object Storage contai
 so that it can be accessed on the public Internet.
 
 The goal of the nginx app is to make the Object Storage container available under the mybluemix.net domain
-and from there it also gives you the option to make itavailable through your own custom domain.
+and from there it also gives you the option to make it available through your own custom domain,
+and ultimately through a content delivery network.
 
 The app uses the [Cloud Foundry static buildpack](https://github.com/cloudfoundry/staticfile-buildpack.git) to achieve this.
 This buildpack runs the high performance [nginx web server](http://nginx.org/) behind the scene.
