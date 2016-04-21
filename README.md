@@ -59,6 +59,14 @@ the generate website to an Object Storage container.
 
 ## Deploy the solution
 
+### Create a new GitHub repository with Jekyll 3 content
+
+* Follow the [quick start guide](https://jekyllrb.com/docs/quickstart/) to create a Jekyll directory structure and then commit the site to GitHub
+
+or
+
+* a simpler approach, [fork **Poole** a foundational setup for any Jekyll site](https://github.com/poole/poole#fork-destination-box)
+
 ### Get the code
 
 * Clone the app to your local environment from your terminal using the following command:

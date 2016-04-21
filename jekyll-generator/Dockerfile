@@ -1,6 +1,6 @@
 FROM ruby:2.3.0
 
-RUN gem install jekyll
+RUN gem install jekyll jekyll-paginate jekyll-gist
 
 RUN apt-get update --fix-missing
 RUN apt-get install -y curl
