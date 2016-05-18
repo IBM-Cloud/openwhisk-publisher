@@ -190,7 +190,7 @@ if you're using the London Bluemix region).
 
   Note: based on our Jekyll theme, the website may not render correctly yet, simply because
   some themes will be using absolute paths in their html like */css/main.css* in a default Jekyll app.
-  The next steps will take of this.
+  The next steps will take care of this.
   
 ### Deploy the nginx app
 
