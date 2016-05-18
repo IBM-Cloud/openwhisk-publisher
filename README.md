@@ -72,7 +72,7 @@ or
 * Clone the app to your local environment from your terminal using the following command:
 
   ```
-  git clone https://github.com/l2fprod/openwhisk-publisher.git
+  git clone https://github.com/IBM-Bluemix/openwhisk-publisher.git
   ```
 
 ### Create the Object Storage in Bluemix
