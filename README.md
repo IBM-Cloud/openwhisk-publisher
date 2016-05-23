@@ -219,10 +219,10 @@ The app provides a custom nginx configuration file, its only purpose being to pr
 1. Define a new environment variable for the application, pointing to the Object Storage container
 
   ```
-  cf set-env openwhisk-publisher-proxy OBJECT_STORAGE_URL https://dal.objectstorage.open.softlayer.com/v1/AUTH_[projectId]/[container]
+  cf set-env openwhisk-publisher-proxy OBJECT_STORAGE_URL https://dal.objectstorage.open.softlayer.com/v1/AUTH_[projectId]/[container]/
   ```
   
-  Make sure to update the URL to match your Object Storage settings.
+  Make sure to update the URL to match your Object Storage settings and to add the trailing slash.
   
 1. Start the application
 
