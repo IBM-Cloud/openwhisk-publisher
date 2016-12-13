@@ -13,28 +13,29 @@
 //------------------------------------------------------------------------------
 function main(doc) {
   // Format of the GitHub archive_url:
-  // 'https://api.github.com/repos/l2fprod/jekyll-test/{archive_format}{/ref}', 
-  
+  // 'https://api.github.com/repos/l2fprod/jekyll-test/{archive_format}{/ref}',
+
   // We download the ZIP archive for the new commit revision
   var archiveUrl = doc.repository.archive_url.replace("{archive_format}", "zipball").replace("{/ref}", "/" + doc.after);
-  console.log("Triggering generation of", archiveUrl);  
-  
-  // and call our Jekyll publisher
-  whisk.invoke({
-    name: "/" + doc.targetNamespace + "/publisher/jekyll",
-    parameters: {
-      archive: archiveUrl
-    },
-    blocking: false,
-    next: function (error, activation) {
-      if (error) {
-        console.log("[error]", error);
-      } else {
-        console.log("[activation]", activation);
-      }
-      whisk.done(undefined, error);
-    }
+  console.log("Triggering generation of", archiveUrl);
+
+  const openwhisk = require('openwhisk');
+  const whisk = openwhisk({ignore_certs: true});
+
+  return new Promise(function(resolve, reject) {
+    // and call our Jekyll publisher
+    whisk.actions.invoke({
+      actionName: "publisher/jekyll",
+      params: {
+        archive: archiveUrl
+      },
+      blocking: false
+    }).then(function(result) {
+      console.log('[OK]', result);
+      resolve({ok: true});
+    }).catch(function(error) {
+      console.log('[KO]', error);
+      reject(error);
+    });
   });
-  
-  return whisk.async();
 }
