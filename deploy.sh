@@ -1,11 +1,6 @@
 # load configuration variables
 source local.env
 
-# capture the namespace where actions will be created
-# as we need to pass it to our change listener
-CURRENT_NAMESPACE=`wsk property get --namespace | awk '{print $3}'`
-echo "Current namespace is $CURRENT_NAMESPACE."
-
 function usage() {
   echo "Usage: $0 [--install,--uninstall,--update,--env]"
 }
@@ -29,12 +24,11 @@ function install() {
   wsk trigger create publisher-github-trigger --feed publisher-github/webhook --param events push
 
   echo "Creating Github event change listener"
-  wsk action create publisher-github-changelistener changelistener.js\
-    -p targetNamespace "$CURRENT_NAMESPACE"
-        
+  wsk action create publisher-github-changelistener changelistener.js
+
   echo "Enabling change listener"
-  wsk rule create publisher-github-rule publisher-github-trigger publisher-github-changelistener --enable
-  
+  wsk rule create publisher-github-rule publisher-github-trigger publisher-github-changelistener
+
   wsk list
 }
 
@@ -45,24 +39,23 @@ function uninstall() {
   echo "Removing rule..."
   wsk rule disable publisher-github-rule
   wsk rule delete publisher-github-rule
-  
+
   echo "Removing change listener..."
   wsk action delete publisher-github-changelistener
-  
+
   echo "Removing trigger..."
   wsk trigger delete publisher-github-trigger
-  
+
   echo "Removing packages..."
   wsk package delete publisher-github
   wsk package delete publisher
-  
+
   echo "Done"
   wsk list
 }
 
 function update() {
-  wsk action update publisher-github-changelistener changelistener.js\
-    -p targetNamespace "$CURRENT_NAMESPACE"
+  wsk action update publisher-github-changelistener changelistener.js
 }
 
 function disable() {
