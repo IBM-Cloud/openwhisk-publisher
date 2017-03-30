@@ -10,8 +10,10 @@ RUN apt-get install -y python-swiftclient
 RUN apt-get install -y python-keystoneclient
 RUN apt-get install -y unzip
 
-RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash - && \
-  apt-get install -y nodejs
+ENV NODE_VERSION 6.9.1
+RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" \
+  && tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 \
+  && rm "node-v$NODE_VERSION-linux-x64.tar.gz"
 
 RUN mkdir /logs
 
