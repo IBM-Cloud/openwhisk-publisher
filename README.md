@@ -28,7 +28,10 @@ Every time a user commits to the repository monitored by OpenWhisk,
 the application retrieves the repository files, calls Jekyll and uploads
 the generate website to an Object Storage container.
 
-![Architecture](http://g.gravizo.com/g?
+![Architecture](https://g.gravizo.com/source/flow?https%3A%2F%2Fraw.githubusercontent.com%2FIBM-Bluemix%2Fopenwhisk-publisher%2Fmaster%2FREADME.md)
+<details>
+<summary></summary>
+flow
   digraph G {
     node [fontname = "helvetica"]
     rankdir=LR
@@ -43,19 +46,21 @@ the generate website to an Object Storage container.
     /* web user */
     user -> nginx [label="Accesses website"]
     nginx -> objectstorage [label="Retrieves content"]
-    /* styling */
+    /* styling ****/
     github [shape=circle style=filled color="%234E96DB" fontcolor=white label="GitHub"]
     openwhisk [shape=circle style=filled color="%2324B643" fontcolor=white label="OpenWhisk"]
     objectstorage [shape=circle style=filled color="%234E96DB" fontcolor=white label="Object Storage"]
     nginx [shape=rectangle style=filled color="%234E96DB" fontcolor=white label="nginx app"]
   }
+flow
 )
+</details>
 
 ## Application Requirements
 
 * IBM Bluemix account. [Sign up][bluemix_signup_url] for Bluemix, or use an existing account.
 * IBM Bluemix OpenWhisk early access. [Sign up for Bluemix OpenWhisk](https://new-console.ng.bluemix.net/openwhisk).
-* Docker Hub account. [Sign up](https://hub.docker.com/) for Docker Hub, or use an existing account. 
+* Docker Hub account. [Sign up](https://hub.docker.com/) for Docker Hub, or use an existing account.
 
 ## Deploy the solution
 
@@ -115,7 +120,7 @@ To build the jekyll-generator image, follow these steps:
   ./buildAndPush.sh youruserid/yourimagename
   ```
   Note: On some systems this command needs to be run with `sudo`.
-  
+
 1. After a while, your image will be available in Docker Hub, ready for OpenWhisk.
 
 ### Deploy OpenWhisk Actions
@@ -133,9 +138,9 @@ If there are none, create a new set of credentials from the console or using the
   ```
   cf create-service-key objectstorage-for-publisher for-openwhisk
   ```
-  
+
   and to get the values:
-  
+
   ```
   cf service-key objectstorage-for-publisher for-openwhisk
   ```
@@ -154,7 +159,7 @@ image you created in the previous section.
   ```
   wsk list
   ```
-  
+
   This shows the packages, actions, triggers and rules currently deployed in your OpenWhisk namespace.
 
 1. Create the action, trigger and rule using the script from the root directory of the application:
@@ -166,7 +171,7 @@ image you created in the previous section.
   Note: the script can also be used to *--uninstall* the OpenWhisk artifacts to
   *--update* the artifacts if you change the action code, or simply with *--env*
   to show the environment variables set in **local.env**.
-  
+
 At this point, every new commit in the GitHub repository will trigger the generation action.
 The action will call Jekyll and publish the results to Object Storage.
 
@@ -177,7 +182,7 @@ To validate it is working as expected:
   ```
   wsk activation poll
   ```
-  
+
 1. Commit a change in the GitHub repository monitored by OpenWhisk.
 
 1. Wait for the generator action being triggered.
@@ -191,7 +196,7 @@ if you're using the London Bluemix region).
   Note: based on our Jekyll theme, the website may not render correctly yet, simply because
   some themes will be using absolute paths in their html like */css/main.css* in a default Jekyll app.
   The next steps will take care of this.
-  
+
 ### Deploy the nginx app
 
 When publishing the generated website, the action made the Object Storage container public
@@ -221,9 +226,9 @@ The app provides a custom nginx configuration file, its only purpose being to pr
   ```
   cf set-env openwhisk-publisher-proxy OBJECT_STORAGE_URL https://dal.objectstorage.open.softlayer.com/v1/AUTH_[projectId]/[container]/
   ```
-  
+
   Make sure to update the URL to match your Object Storage settings and to add the trailing slash.
-  
+
 1. Start the application
 
   ```
