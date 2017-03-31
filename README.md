@@ -59,7 +59,6 @@ flow
 ## Application Requirements
 
 * IBM Bluemix account. [Sign up][bluemix_signup_url] for Bluemix, or use an existing account.
-* IBM Bluemix OpenWhisk early access. [Sign up for Bluemix OpenWhisk](https://new-console.ng.bluemix.net/openwhisk).
 * Docker Hub account. [Sign up](https://hub.docker.com/) for Docker Hub, or use an existing account.
 
 ## Deploy the solution
