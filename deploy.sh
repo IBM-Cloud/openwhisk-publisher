@@ -10,7 +10,7 @@ function install() {
   wsk package create publisher
 
   echo "Creating actions"
-  wsk action create -t 300000 --docker publisher/jekyll $JEKYLL_DOCKER_IMAGE\
+  wsk action create -t 300000 publisher/jekyll --docker $JEKYLL_DOCKER_IMAGE\
     -p OS_USER_ID "$OS_USER_ID" \
     -p OS_PASSWORD "$OS_PASSWORD" \
     -p OS_PROJECT_ID "$OS_PROJECT_ID" \
