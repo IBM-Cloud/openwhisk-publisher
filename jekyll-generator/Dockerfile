@@ -1,8 +1,9 @@
 FROM ruby:2.3.0
 
-RUN gem install jekyll jekyll-paginate jekyll-gist
+RUN gem install jekyll:3.4.3 jekyll-paginate:1.1.0 jekyll-gist:1.4.0
 
 RUN apt-get update --fix-missing
+RUN apt-get install -y build-essential python2.7-dev python-pip libffi-dev libssl-dev
 RUN apt-get install -y curl
 RUN apt-get install -y git
 RUN apt-get install -y wget
